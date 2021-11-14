@@ -1,0 +1,13 @@
+#! /bin/sh
+
+#
+# Init script that is executed by the kernel after booting.
+#
+
+mount -t devtmpfs dev /dev
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+ip link set up dev lo
+
+exec /sbin/getty -n -l /login 115200 /dev/console
+poweroff -f
